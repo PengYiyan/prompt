@@ -20,5 +20,5 @@ public enum UserRole {
 
     ADMIN, //网站管理员
 
-    STUDENT; //普通用户(学生)
+    STUDENT, //普通用户(学生)
 }
