@@ -4,18 +4,18 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 /**
- * @date 2023/12/22
- * 大模型的实体类
+ * @date 2023/12/21
+ * 上传的文件，用于批量构建
  */
 @Entity
 @Data
-@Table(name = "Model")
-public class Model {
+@Table(name = "table")
+public class File {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "model_id")
-    private Integer modelId;
+    @Column(name = "file_id")
+    private Integer fileId;
 
 
 }
