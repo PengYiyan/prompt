@@ -23,4 +23,6 @@ public class Prompt {
     @Column(name = "prompt_id")
     private Integer promptId;
 
+    @Column(name = "content")
+    private String content; //提示词内容
 }

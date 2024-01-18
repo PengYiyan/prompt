@@ -1,7 +1,8 @@
-package com.example.prompt.service.managerment;
+package com.example.prompt.service.user;
 
 import com.example.prompt.entity.LLMs.Model;
 import com.example.prompt.entity.LLMs.Prompt;
+import com.example.prompt.vo.ResponseVO;
 
 import java.util.List;
 
@@ -36,5 +37,20 @@ public interface ManagerService {
      */
     List<Model> getModelByUser(Integer userId);
 
-    //TODO 增删改查
+    /**
+     * 删除某个提示词
+     * @param promptId
+     * @return
+     */
+    ResponseVO deletePromptById(Integer promptId);
+
+    /**
+     * 删除某个模型
+     * @param modelId
+     * @return
+     */
+    ResponseVO deleteModelById(Integer modelId);
+
+
+
 }

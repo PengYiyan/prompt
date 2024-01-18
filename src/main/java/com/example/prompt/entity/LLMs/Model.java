@@ -17,5 +17,7 @@ public class Model {
     @Column(name = "model_id")
     private Integer modelId;
 
+    @Column(name = "address")
+    private String address; //大模型的部署地址
 
 }

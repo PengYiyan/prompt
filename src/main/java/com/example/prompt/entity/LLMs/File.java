@@ -17,5 +17,7 @@ public class File {
     @Column(name = "file_id")
     private Integer fileId;
 
+    @Column(name = "content")
+    private String content; //文件内容
 
 }
