@@ -1,8 +1,10 @@
 package com.example.prompt;
 
 import com.example.prompt.dao.UserRepository;
+import com.example.prompt.entity.LLMs.Prompt;
 import com.example.prompt.entity.Role.User;
 import com.example.prompt.enums.UserRole;
+import com.example.prompt.service.LLMs.ModelService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ class PromptApplicationTests {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ModelService modelService;
 
     @Test
     void contextLoads() {
@@ -45,5 +49,10 @@ class PromptApplicationTests {
         for(User user : userList){
             System.out.println(user.toString());
         }
+    }
+
+    @Test
+    public void getCurlMessage() {
+        System.out.println(modelService.getAnswer(new Prompt()));
     }
 }

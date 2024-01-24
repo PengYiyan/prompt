@@ -1,6 +1,8 @@
 package com.example.prompt.service.LLMs;
 
+import com.example.prompt.entity.LLMs.Prompt;
 import com.example.prompt.vo.ResponseVO;
+import com.example.prompt.vo.ResultVO;
 
 /**
  * @date 2023/12/22
@@ -9,17 +11,17 @@ import com.example.prompt.vo.ResponseVO;
 public interface ModelService {
 
     /**
-     * 根据提示词id插入一条prompt
-     * @param promptId
+     * 将prompt内容输入进大模型中
+     * @param prompt
      * @return
      */
-    ResponseVO insertPromptById(Integer promptId);
+    ResponseVO usePrompt(Prompt prompt);
 
     /**
-     * 直接插入输入的提示词，并记录在数据库中
-     * @param content
+     * 根据prompt获得大模型回答
+     * @param prompt
      * @return
      */
-    ResponseVO insertPrompt(String content);
+    String getAnswer(Prompt prompt);
 
 }
