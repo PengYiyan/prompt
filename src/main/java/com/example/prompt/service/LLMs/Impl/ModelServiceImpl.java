@@ -1,9 +1,13 @@
 package com.example.prompt.service.LLMs.Impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.prompt.entity.Json.LlmJson;
 import com.example.prompt.entity.LLMs.Prompt;
 import com.example.prompt.service.LLMs.ModelService;
 import com.example.prompt.vo.ResponseVO;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -13,6 +17,8 @@ import java.io.InputStreamReader;
 @Service
 public class ModelServiceImpl implements ModelService {
 
+    private final static String URL = "http://10.58.0.2:6678/v1/chat/completions";
+    private final static String KEY = "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";
 
     @Override
     public ResponseVO usePrompt(Prompt prompt){
@@ -21,14 +27,21 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public String getAnswer(Prompt prompt){
-        String jsonStr = "\"{\\\"model\\\": \\\"baichuan2-13b-chat\\\", \\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Say this is a test\\\"}], \\\"temperature\\\": 0.95}\"";
+//        String jsonStr = "\"{\\\"model\\\": \\\"baichuan2-13b-chat\\\", \\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Say this is a test\\\"}], \\\"temperature\\\": 0.95}\"";
+
+        LlmJson llmJson = new LlmJson().setModel("baichuan2-13b-chat").setTemperature(0.95);
+        llmJson.setMessage("user",prompt.getContent());
+
+        String jsonStr = llmJson.toString();
 
         String[] cmds={"curl","http://10.58.0.2:6678/v1/chat/completions",
                 "-H",  "\"Content-Type: application/json\"",
                 "-H",  "\"Authorization: Bearer $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\"",
                 "-d",  jsonStr};
-        String res = execCurl(cmds);
-        System.out.println(execCurl(cmds));
+//        JSONObject jsonObject = JSONObject.parseObject(execCurl(cmds));
+        JSONArray ori = JSONObject.parseObject(execCurl(cmds)).getJSONArray("choices");
+        String res = ori.getJSONObject(0).getJSONObject("message").getString("content");
+        System.out.println(res);
         return res;
     }
 
@@ -44,7 +57,6 @@ public class ModelServiceImpl implements ModelService {
                 builder.append(line);
                 builder.append(System.getProperty("line.separator"));
             }
-//            System.out.println(builder);
             return builder.toString();
 
         } catch (IOException e) {

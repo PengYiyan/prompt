@@ -53,6 +53,7 @@ class PromptApplicationTests {
 
     @Test
     public void getCurlMessage() {
-        System.out.println(modelService.getAnswer(new Prompt()));
+        Prompt prompt = new Prompt().setContent("Say this is a test");
+        System.out.println(modelService.getAnswer(prompt));
     }
 }
