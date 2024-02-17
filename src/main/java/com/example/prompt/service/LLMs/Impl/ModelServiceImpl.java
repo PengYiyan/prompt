@@ -29,7 +29,7 @@ public class ModelServiceImpl implements ModelService {
     public String getAnswer(Prompt prompt){
 //        String jsonStr = "\"{\\\"model\\\": \\\"baichuan2-13b-chat\\\", \\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Say this is a test\\\"}], \\\"temperature\\\": 0.95}\"";
 
-        LlmJson llmJson = new LlmJson().setModel("baichuan2-13b-chat").setTemperature(0.95);
+        LlmJson llmJson = new LlmJson().setModel("baichuan2-13b-chat").setTemperature(0.3);
         llmJson.setMessage("user",prompt.getContent());
 
         String jsonStr = llmJson.toString();
@@ -38,10 +38,11 @@ public class ModelServiceImpl implements ModelService {
                 "-H",  "\"Content-Type: application/json\"",
                 "-H",  "\"Authorization: Bearer $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\"",
                 "-d",  jsonStr};
-//        JSONObject jsonObject = JSONObject.parseObject(execCurl(cmds));
+        JSONObject jsonObject = JSONObject.parseObject(execCurl(cmds));
         JSONArray ori = JSONObject.parseObject(execCurl(cmds)).getJSONArray("choices");
         String res = ori.getJSONObject(0).getJSONObject("message").getString("content");
-        System.out.println(res);
+//        System.out.println(execCurl(cmds));
+//        return null;
         return res;
     }
 

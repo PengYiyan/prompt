@@ -1,5 +1,6 @@
 package com.example.prompt.entity.LLMs;
 
+import com.example.prompt.enums.PromptType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @date 2023/12/22
- * 提示词(单句)
+ * 提示词（单词or单句）
  */
 @Entity
 @Data
@@ -25,4 +26,8 @@ public class Prompt {
 
     @Column(name = "content")
     private String content; //提示词内容
+
+    @Column(name = "type")
+    private PromptType type; //提示词维度类型,根据维度类型进行推荐
+
 }

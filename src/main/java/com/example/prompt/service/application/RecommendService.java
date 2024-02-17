@@ -24,4 +24,11 @@ public interface RecommendService {
      */
     List<Prompt> getRecommendByType(String type);
 
+    /**
+     * 根据用户问题内容生成相应提示词（目前最重要的功能）
+     * @param content
+     * @return
+     */
+    List<Prompt> getRecommendByContent(String content);
+
 }

@@ -19,6 +19,8 @@ public class LlmJson {
     private Message message;
 
     private Double temperature;
+    //语言模型中的 temperature 参数可以控制生成文本的随机性和多样性
+    //temperature 越大模型输出的多样性越高；temperature 越小，模型越倾向于高概率的可靠文本
 
     public void setMessage(String role,String content) {
         Message message = new Message();

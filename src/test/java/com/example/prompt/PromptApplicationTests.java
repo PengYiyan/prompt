@@ -53,7 +53,7 @@ class PromptApplicationTests {
 
     @Test
     public void getCurlMessage() {
-        Prompt prompt = new Prompt().setContent("Say this is a test");
+        Prompt prompt = new Prompt().setContent("请给我一些求职建议");
         System.out.println(modelService.getAnswer(prompt));
     }
 }
