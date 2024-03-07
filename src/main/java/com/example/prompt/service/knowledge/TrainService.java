@@ -1,11 +1,11 @@
-package com.example.prompt.service.training;
+package com.example.prompt.service.knowledge;
 
 import com.example.prompt.vo.ResponseVO;
 
 /**
  * @date 2023/12/15
- * 用于进行模型训练
- * 单句上传Or选择提示词训练
+ * 用于知识库生成
+ * 单句上传or文件上传
  */
 public interface TrainService {
 
@@ -17,10 +17,10 @@ public interface TrainService {
     ResponseVO trainBySentence(String sentence);
 
     /**
-     * 上传文件训练模式（暂定上传json文件）
-     * @param jsonString
+     * 上传文件训练模式
+     * @param path 文件路径
      * @return
      */
-    ResponseVO trainByFile(String jsonString);
+    ResponseVO trainByFile(String path);
 
 }

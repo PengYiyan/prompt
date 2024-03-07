@@ -1,15 +1,15 @@
-package com.example.prompt.entity.LLMs;
+package com.example.prompt.entity.Prompt;
 
-import com.example.prompt.enums.PromptType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 /**
- * @date 2023/12/22
- * 提示词（单词or单句）
+ * 完整的Paragraph提示词，内部含有可以填空的miniPrompt
  */
 @Entity
 @Data
@@ -24,10 +24,14 @@ public class Prompt {
     @Column(name = "prompt_id")
     private Integer promptId;
 
-    @Column(name = "content")
-    private String content; //提示词内容
+    @OneToMany
+    @Column(name = "tags")
+    private List<Field> tags;//包含的领域（领域的tag）
 
-    @Column(name = "type")
-    private PromptType type; //提示词维度类型,根据维度类型进行推荐
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "collect_count")
+    private Integer collectCount;//收藏数目，收藏数多的排序靠前
 
 }

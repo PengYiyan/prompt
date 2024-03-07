@@ -1,8 +1,7 @@
 package com.example.prompt.service.LLMs;
 
-import com.example.prompt.entity.LLMs.Prompt;
+import com.example.prompt.entity.Prompt.MiniPrompt;
 import com.example.prompt.vo.ResponseVO;
-import com.example.prompt.vo.ResultVO;
 
 /**
  * @date 2023/12/22
@@ -15,13 +14,13 @@ public interface ModelService {
      * @param prompt
      * @return
      */
-    ResponseVO usePrompt(Prompt prompt);
+    ResponseVO usePrompt(MiniPrompt prompt);
 
     /**
      * 根据prompt获得大模型回答
      * @param prompt
      * @return
      */
-    String getAnswer(Prompt prompt);
+    String getAnswer(MiniPrompt prompt);
 
 }

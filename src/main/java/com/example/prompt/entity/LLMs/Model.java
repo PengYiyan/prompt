@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @date 2023/12/22
- * 大模型的实体类
+ * 大模型的实体类（暂定，不确定还需不需要这个属性）
  */
 @Entity
 @Data

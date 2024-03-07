@@ -1,8 +1,8 @@
 package com.example.prompt.dao;
 
-import com.example.prompt.entity.LLMs.Prompt;
+import com.example.prompt.entity.Prompt.MiniPrompt;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PromptRepository extends JpaRepository<Prompt, Integer> {
+public interface PromptRepository extends JpaRepository<MiniPrompt, Integer> {
 
 }

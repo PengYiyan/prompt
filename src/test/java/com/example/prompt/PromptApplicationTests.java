@@ -1,11 +1,10 @@
 package com.example.prompt;
 
 import com.example.prompt.dao.UserRepository;
-import com.example.prompt.entity.LLMs.Prompt;
+import com.example.prompt.entity.Prompt.MiniPrompt;
 import com.example.prompt.entity.Role.User;
 import com.example.prompt.enums.UserRole;
 import com.example.prompt.service.LLMs.ModelService;
-import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -53,7 +52,7 @@ class PromptApplicationTests {
 
     @Test
     public void getCurlMessage() {
-        Prompt prompt = new Prompt().setContent("请给我一些求职建议");
+        MiniPrompt prompt = new MiniPrompt().setContent("请给我一些求职建议");
         System.out.println(modelService.getAnswer(prompt));
     }
 }

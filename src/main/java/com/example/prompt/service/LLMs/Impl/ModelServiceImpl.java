@@ -1,13 +1,11 @@
 package com.example.prompt.service.LLMs.Impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.prompt.entity.Json.LlmJson;
-import com.example.prompt.entity.LLMs.Prompt;
+import com.example.prompt.entity.Prompt.MiniPrompt;
 import com.example.prompt.service.LLMs.ModelService;
 import com.example.prompt.vo.ResponseVO;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -21,12 +19,12 @@ public class ModelServiceImpl implements ModelService {
     private final static String KEY = "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";
 
     @Override
-    public ResponseVO usePrompt(Prompt prompt){
+    public ResponseVO usePrompt(MiniPrompt prompt){
         return ResponseVO.buildSuccess();
     }
 
     @Override
-    public String getAnswer(Prompt prompt){
+    public String getAnswer(MiniPrompt prompt){
 //        String jsonStr = "\"{\\\"model\\\": \\\"baichuan2-13b-chat\\\", \\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Say this is a test\\\"}], \\\"temperature\\\": 0.95}\"";
 
         LlmJson llmJson = new LlmJson().setModel("baichuan2-13b-chat").setTemperature(0.3);

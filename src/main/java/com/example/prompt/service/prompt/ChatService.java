@@ -1,4 +1,4 @@
-package com.example.prompt.service.chat;
+package com.example.prompt.service.prompt;
 
 import com.example.prompt.vo.ResultVO;
 
@@ -16,5 +16,7 @@ public interface ChatService {
     ResultVO getAnswer(String question);
 
     //TODO 聊天窗一系列的消息记录导出导入等管理，类似SeecoderAI的demo
+
+
 
 }

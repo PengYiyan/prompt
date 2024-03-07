@@ -1,7 +1,9 @@
-package com.example.prompt.service.user;
+package com.example.prompt.service.prompt;
 
 import com.example.prompt.entity.LLMs.Model;
-import com.example.prompt.entity.LLMs.Prompt;
+import com.example.prompt.entity.Prompt.Field;
+import com.example.prompt.entity.Prompt.MiniPrompt;
+import com.example.prompt.entity.Prompt.Prompt;
 import com.example.prompt.vo.ResponseVO;
 
 import java.util.List;
@@ -13,10 +15,10 @@ import java.util.List;
 public interface ManagerService {
 
     /**
-     * 获取所有的提示词
+     * 获取所有的领域类别，用于顶部分类选择
      * @return
      */
-    List<Prompt> getAllPrompts();
+    List<Field> getAllFields();
 
     /**
      * 获取用户上传的所有提示词

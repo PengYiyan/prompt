@@ -16,11 +16,11 @@ public interface DeployService {
      */
     ResponseVO deployLLM(int modelId);
 
-    /**
-     * 在线部署项目应用
-     * @param projectId
-     * @return
-     */
-    ResponseVO deployApplication(int projectId);
+//    /**
+//     * 在线部署项目应用
+//     * @param projectId
+//     * @return
+//     */
+//    ResponseVO deployApplication(int projectId);
 
 }

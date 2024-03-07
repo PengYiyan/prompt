@@ -1,15 +1,14 @@
-package com.example.prompt.service.LLMs;
+package com.example.prompt.service.prompt;
 
-import com.example.prompt.entity.LLMs.Prompt;
 import com.example.prompt.vo.ResponseVO;
-
-import java.util.List;
 
 /**
  * 提示词相关的操作
  * 主要是提示词的输入(chat)和提示词生成
  */
 public interface PromptService {
+
+
 
     /**
      * 根据提示词id插入一条prompt(插入已有提示词or候选)

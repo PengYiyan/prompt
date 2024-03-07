@@ -1,11 +1,15 @@
 package com.example.prompt.entity.Role;
 
+import com.example.prompt.entity.Prompt.Prompt;
 import com.example.prompt.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 2023/12/28
@@ -35,4 +39,9 @@ public class User {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role; //用户类型,主要包括管理员类和普通用户(目前是学生)
+
+    @OneToMany
+    @Column(name = "collect")
+    private List<Prompt> collect = new ArrayList<>();//用户收藏的大段prompt内容
+
 }
