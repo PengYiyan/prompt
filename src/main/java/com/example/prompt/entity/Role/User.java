@@ -40,8 +40,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role; //用户类型,主要包括管理员类和普通用户(目前是学生)
 
-    @OneToMany
-    @Column(name = "collect")
-    private List<Prompt> collect = new ArrayList<>();//用户收藏的大段prompt内容
+//    @OneToMany
+//    @Column(name = "collect")
+//    private List<Prompt> collect = new ArrayList<>();//用户收藏的大段prompt内容
+
 
 }

@@ -10,14 +10,14 @@ import com.example.prompt.vo.ResponseVO;
 public interface TrainService {
 
     /**
-     * 单句训练模式
+     * 单句上传
      * @param sentence
      * @return
      */
     ResponseVO trainBySentence(String sentence);
 
     /**
-     * 上传文件训练模式
+     * 文件上传，用于构建知识库
      * @param path 文件路径
      * @return
      */

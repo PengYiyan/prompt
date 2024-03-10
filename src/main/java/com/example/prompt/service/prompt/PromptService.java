@@ -5,13 +5,14 @@ import com.example.prompt.vo.ResponseVO;
 /**
  * 提示词相关的操作
  * 主要是提示词的输入(chat)和提示词生成
+ * 大模型处理提示词内容并返回答案的功能在ModelService
  */
 public interface PromptService {
 
 
 
     /**
-     * 根据提示词id插入一条prompt(插入已有提示词or候选)
+     * 使用一条现有的提示词
      * @param promptId
      * @return
      */

@@ -2,8 +2,9 @@ package com.example.prompt.enums;
 
 /**
  * 角色类型（给大模型的角色）
+ * 通过预设对话的方法
  */
-public enum Character {
+public enum Mask {
 
     SE,//软件工程专家
 

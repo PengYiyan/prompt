@@ -6,16 +6,19 @@ import com.example.prompt.vo.ResponseVO;
 /**
  * 2024/1/4
  * 标签相关的操作，主要是管理提示词标签
+ * 包括field和promptTag
  */
-public interface tagService {
+public interface TagService {
 
     /**
-     * 在大段
-     * @param mainId
-     * @param mainTag
+     * 给prompt增加一个field
+     * @param promptId
+     * @param field
      * @return
      */
-    ResponseVO uploadTag(Integer mainId, Field mainTag);
+    ResponseVO uploadTag(Integer promptId, Field field);
+
+
 
 
 //    /**

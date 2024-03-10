@@ -1,8 +1,11 @@
 package com.example.prompt.dao;
 
-import com.example.prompt.entity.Prompt.MiniPrompt;
+import com.example.prompt.entity.Prompt.Prompt;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PromptRepository extends JpaRepository<MiniPrompt, Integer> {
+import java.util.List;
 
+public interface PromptRepository extends JpaRepository<Prompt, Integer> {
+
+    public List<Prompt> findPromptByUserId(Integer userId);
 }

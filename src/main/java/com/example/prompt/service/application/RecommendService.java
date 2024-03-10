@@ -1,6 +1,6 @@
 package com.example.prompt.service.application;
 
-import com.example.prompt.entity.Prompt.MiniPrompt;
+import com.example.prompt.entity.Prompt.Prompt;
 
 import java.util.List;
 
@@ -11,25 +11,27 @@ import java.util.List;
  */
 public interface RecommendService {
 
-    /**
-     * 根据模型id获得推荐的提示词
-     * @param modelId
-     * @return
-     */
-    List<MiniPrompt> getRecommendByModel(int modelId);
+//    /**
+//     * 根据模型id获得推荐的提示词
+//     * @param modelId
+//     * @return
+//     */
+//    List<Prompt> getRecommendByModel(int modelId);
+//
+//    /**
+//     * 根据模型类型获得推荐的提示词
+//     * @param type
+//     * @return
+//     */
+//    List<Prompt> getRecommendByType(String type);
+
 
     /**
-     * 根据模型类型获得推荐的提示词
-     * @param type
+     * 根据用户id推荐提示词(根据用户的收藏内容)
+     * @param userId
      * @return
      */
-    List<MiniPrompt> getRecommendByType(String type);
+    List<Prompt> getRecommendByUserId(Integer userId);
 
-    /**
-     * 根据用户问题内容生成相应提示词（目前最重要的功能）
-     * @param content
-     * @return
-     */
-    List<MiniPrompt> getRecommendByContent(String content);
 
 }

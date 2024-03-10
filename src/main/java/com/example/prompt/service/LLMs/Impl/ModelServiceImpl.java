@@ -3,7 +3,8 @@ package com.example.prompt.service.LLMs.Impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.prompt.entity.Json.LlmJson;
-import com.example.prompt.entity.Prompt.MiniPrompt;
+import com.example.prompt.entity.Prompt.Prompt;
+import com.example.prompt.enums.Mask;
 import com.example.prompt.service.LLMs.ModelService;
 import com.example.prompt.vo.ResponseVO;
 import org.springframework.stereotype.Service;
@@ -15,16 +16,12 @@ import java.io.InputStreamReader;
 @Service
 public class ModelServiceImpl implements ModelService {
 
-    private final static String URL = "http://10.58.0.2:6678/v1/chat/completions";
+    //
+    private final static String URL1 = "http://10.58.0.2:6678/v1/chat/completions";
     private final static String KEY = "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";
 
     @Override
-    public ResponseVO usePrompt(MiniPrompt prompt){
-        return ResponseVO.buildSuccess();
-    }
-
-    @Override
-    public String getAnswer(MiniPrompt prompt){
+    public String getAnswer(Prompt prompt){
 //        String jsonStr = "\"{\\\"model\\\": \\\"baichuan2-13b-chat\\\", \\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Say this is a test\\\"}], \\\"temperature\\\": 0.95}\"";
 
         LlmJson llmJson = new LlmJson().setModel("baichuan2-13b-chat").setTemperature(0.3);
@@ -32,7 +29,7 @@ public class ModelServiceImpl implements ModelService {
 
         String jsonStr = llmJson.toString();
 
-        String[] cmds={"curl","http://10.58.0.2:6678/v1/chat/completions",
+        String[] cmds={"curl",URL1,
                 "-H",  "\"Content-Type: application/json\"",
                 "-H",  "\"Authorization: Bearer $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\"",
                 "-d",  jsonStr};

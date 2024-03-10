@@ -1,7 +1,7 @@
-package com.example.prompt.service.LLMs.Impl;
+package com.example.prompt.service.prompt.Impl;
 
 import com.example.prompt.dao.PromptRepository;
-import com.example.prompt.entity.Prompt.MiniPrompt;
+import com.example.prompt.entity.Prompt.Prompt;
 import com.example.prompt.service.LLMs.ModelService;
 import com.example.prompt.service.prompt.PromptService;
 import com.example.prompt.vo.ResponseVO;
@@ -18,16 +18,16 @@ public class PromptServiceImpl implements PromptService {
 
     @Override
     public ResponseVO insertPromptById(Integer promptId){
-        MiniPrompt prompt = promptRepository.findById(promptId).get();
-        modelService.usePrompt(prompt);
+        Prompt prompt = promptRepository.findById(promptId).get();
+        modelService.getAnswer(prompt);
         return ResponseVO.buildSuccess(promptId);
     }
 
     @Override
     public ResponseVO insertPrompt(String content){
-        MiniPrompt prompt = new MiniPrompt().setContent(content);
+        Prompt prompt = new Prompt().setContent(content);
         promptRepository.save(prompt);
-        modelService.usePrompt(prompt);
+//        modelService.getAnswer(prompt);
         return ResponseVO.buildSuccess();
     }
 
