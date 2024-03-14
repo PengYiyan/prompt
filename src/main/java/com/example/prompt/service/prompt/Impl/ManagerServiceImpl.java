@@ -1,11 +1,9 @@
 package com.example.prompt.service.prompt.Impl;
 
 import com.example.prompt.Util.ConvertUtil;
-import com.example.prompt.dao.FieldRepository;
-import com.example.prompt.dao.HistoryRepository;
-import com.example.prompt.dao.ModelRepository;
-import com.example.prompt.dao.PromptRepository;
+import com.example.prompt.dao.*;
 import com.example.prompt.entity.LLMs.Model;
+import com.example.prompt.entity.Prompt.Collect;
 import com.example.prompt.entity.Prompt.Field;
 import com.example.prompt.entity.Prompt.Prompt;
 import com.example.prompt.service.prompt.HistoryService;
@@ -27,6 +25,8 @@ public class ManagerServiceImpl implements ManagerService {
     private PromptRepository promptRepository;
     @Resource
     private ModelRepository modelRepository;
+    @Resource
+    private CollectRepository collectRepository;
 
     @Override
     public List<Field> getAllFields() {
@@ -53,6 +53,35 @@ public class ManagerServiceImpl implements ManagerService {
     public ResponseVO deletePromptById(Integer promptId) {
         promptRepository.deleteById(promptId);
         return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO collectPrompt(Integer promptId, Integer userId) {
+        List<Collect> collectList = collectRepository.findCollectByUserIdAndPromptId(userId,promptId);
+        if (collectList.size() != 0) { //说明已经有此条收藏记录,不重复添加
+            return ResponseVO.buildFailure("已经存在此条记录!");
+        }
+        Prompt prompt = promptRepository.findById(promptId).get();
+        Integer collectCount = prompt.getCollectCount();
+        collectCount += 1;
+        prompt.setCollectCount(collectCount);
+        Collect collect = new Collect();
+        collect.setUserId(userId).setPromptId(promptId);
+        collectRepository.save(collect);
+        promptRepository.save(prompt);
+        return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO cancelCollectPrompt(Integer promptId, Integer userId) {
+        List<Collect> collectList = collectRepository.findCollectByUserIdAndPromptId(userId,promptId);
+        if (collectList.size() == 0) {
+            return ResponseVO.buildFailure("错误");
+        }
+        Collect collect = collectList.get(0);
+        collectRepository.deleteById(collect.getCollectId());
+        return ResponseVO.buildSuccess();
+
     }
 
     @Override

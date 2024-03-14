@@ -75,6 +75,7 @@ create TABLE `Prompt`
     `title` varchar(255) DEFAULT NULL,
     `content` varchar(255) DEFAULT NULL,
     `has_upload` boolean DEFAULT FALSE,
+    `upload_time` DATE DEFAULT NULL,
 
     PRIMARY KEY (`prompt_id`)
 ) ENGINE = InnoDB
@@ -89,11 +90,11 @@ create TABLE `Prompt`
 begin;
 /*!40000 ALTER TABLE `Prompt` ENABLE KEYS */;
 INSERT INTO Prompt
-VALUES (1, '艺术', 0, 1,'Title1','这是一条提示词1',false);
+VALUES (1, '艺术', 0, 1,'Title1','这是一条提示词1',true,'2024-03-13');
 INSERT INTO Prompt
-VALUES (2, '学术', 0, 1,'Title2','这是一条提示词2',false);
+VALUES (2, '学术', 0, 1,'Title2','这是一条提示词2',false,null);
 INSERT INTO Prompt
-VALUES (3, '软件工程', 1, 1,'Title3','这是一条提示词3',false);
+VALUES (3, '软件工程', 1, 1,'Title3','这是一条提示词3',false,null);
 /*!40000 ALTER TABLE `Prompt` ENABLE KEYS */;
 COMMIT;
 
@@ -193,27 +194,27 @@ create TABLE `Collect`
 -- Dumping data for table `Collect`
 --
 
-# begin;
-# /*!40000 ALTER TABLE `Collect` ENABLE KEYS */;
-# INSERT INTO Collect
-# VALUES (1, 'sample1', 'json', 'json','ADMIN');
-# INSERT INTO Collect
-# VALUES (2, 'sample2', 'json', 'json','STUDENT');
-# INSERT INTO Collect
-# VALUES (3, 'sample3', 'json', 'json','ADMIN');
-# /*!40000 ALTER TABLE `Collect` ENABLE KEYS */;
-# COMMIT;
+begin;
+/*!40000 ALTER TABLE `Collect` ENABLE KEYS */;
+INSERT INTO Collect
+VALUES (1, 1, 1);
+INSERT INTO Collect
+VALUES (2, 1 ,2);
+INSERT INTO Collect
+VALUES (3, 2, 3);
+/*!40000 ALTER TABLE `Collect` ENABLE KEYS */;
+COMMIT;
 
 --
--- Table structure for table `PromptTag`
+-- Table structure for table `Tag`
 --
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-drop table IF EXISTS `PromptTag`;
+drop table IF EXISTS `Tag`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-create TABLE `PromptTag`
+create TABLE `Tag`
 (
     `tag_id`       int(11) NOT NULL AUTO_INCREMENT,
     `tag_type` varchar(255) DEFAULT NULL,
@@ -226,16 +227,56 @@ create TABLE `PromptTag`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `PromptTag`
+-- Dumping data for table `Tag`
 --
 
 # begin;
-# /*!40000 ALTER TABLE `PromptTag` ENABLE KEYS */;
-# INSERT INTO PromptTag
+# /*!40000 ALTER TABLE `Tag` ENABLE KEYS */;
+# INSERT INTO Tag
 # VALUES (1, 'sample1', 'json', 'json','ADMIN');
-# INSERT INTO PromptTag
+# INSERT INTO Tag
 # VALUES (2, 'sample2', 'json', 'json','STUDENT');
-# INSERT INTO PromptTag
+# INSERT INTO Tag
 # VALUES (3, 'sample3', 'json', 'json','ADMIN');
-# /*!40000 ALTER TABLE `PromptTag` ENABLE KEYS */;
+# /*!40000 ALTER TABLE `Tag` ENABLE KEYS */;
 # COMMIT;
+
+--
+-- Table structure for table `Comment`
+--
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+drop table IF EXISTS `Comment`;
+/*!40101 SET @saved_cs_client = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+create TABLE `Comment`
+(
+    `comment_id`       int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) DEFAULT NULL,
+    `content` varchar(255) DEFAULT NULL,
+    `prompt_id` int(11) DEFAULT NULL,
+    `like_count` int(11) DEFAULT NULL,
+    `time` DATE DEFAULT NULL,
+
+    PRIMARY KEY (`comment_id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Comment`
+--
+
+# begin;
+# /*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
+# INSERT INTO Comment
+# VALUES (1, 'sample1', 'json', 'json','ADMIN');
+# INSERT INTO Comment
+# VALUES (2, 'sample2', 'json', 'json','STUDENT');
+# INSERT INTO Comment
+# VALUES (3, 'sample3', 'json', 'json','ADMIN');
+# /*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
+# COMMIT;
+

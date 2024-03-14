@@ -22,11 +22,11 @@ import lombok.experimental.Accessors;
 
 @Entity
 @Data
-@Table(name = "promptTag")
+@Table(name = "tag")
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class PromptTag {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +38,5 @@ public class PromptTag {
 
     @Column(name = "content")
     private String content;//tag的内容，具体的内容
+    //大的tag(总体类)只有tagType没有具体内容
 }

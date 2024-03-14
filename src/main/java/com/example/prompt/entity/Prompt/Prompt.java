@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,4 +48,13 @@ public class Prompt {
     @Column(name = "has_upload")
     private Boolean hasUpload = false;//记录提示词是否被上传
     //(上传的提示词才能被大家都看到，否则只在历史记录中)
+
+    @Column(name = "upload_time")
+    private String uploadTime;//上传该条提示词的时间
+
+    private static String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = new java.util.Date();
+        return sdf.format(date);
+    }
 }

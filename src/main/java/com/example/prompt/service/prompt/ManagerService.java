@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @date 2023/12/22
- * 管理功能，用于管理已有的提示词和模型
+ * 管理功能，用于管理已有的提示词
  */
 public interface ManagerService {
 
@@ -42,12 +42,15 @@ public interface ManagerService {
      */
     ResponseVO deletePromptById(Integer promptId);
 
+    /**
+     * 收藏某条提示词
+     * @param promptId
+     * @param userId
+     * @return
+     */
+    ResponseVO collectPrompt(Integer promptId, Integer userId);
 
-
-
-
-
-
+    ResponseVO cancelCollectPrompt(Integer promptId, Integer userId);
 
 
     /**

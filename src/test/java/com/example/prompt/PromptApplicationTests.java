@@ -1,19 +1,25 @@
 package com.example.prompt;
 
 import com.example.prompt.Util.ConvertUtil;
+import com.example.prompt.dao.CollectRepository;
 import com.example.prompt.dao.PromptRepository;
 import com.example.prompt.dao.UserRepository;
+import com.example.prompt.entity.Prompt.Collect;
+import com.example.prompt.entity.Prompt.Comment;
 import com.example.prompt.entity.Prompt.Prompt;
+import com.example.prompt.entity.Prompt.Tag;
 import com.example.prompt.entity.Role.User;
 import com.example.prompt.enums.UserRole;
 import com.example.prompt.service.LLMs.ModelService;
 import com.example.prompt.service.prompt.ManagerService;
 import com.example.prompt.service.prompt.PromptService;
+import com.example.prompt.service.prompt.TagService;
 import com.example.prompt.vo.PromptVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -30,6 +36,10 @@ class PromptApplicationTests {
     private PromptRepository promptRepository;
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private CollectRepository collectRepository;
+    @Autowired
+    private TagService tagService;
 
     @Test
     void contextLoads() {
@@ -100,6 +110,42 @@ class PromptApplicationTests {
         //从PO转换成VO
         PromptVO promptVO = ConvertUtil.convertOne(prompt,new PromptVO());
         System.out.println(promptVO);
+    }
+
+    @Test
+    public void testFindCollect() {//测试多个条件的查询接口
+//        List<Collect> collectList = collectRepository.findCollectByUserIdAndPromptId(3,1);
+//        System.out.println(collectList.size());
+        managerService.collectPrompt(3,1);
+    }
+
+    @Test
+    public void testComment() {
+        Comment comment = new Comment();
+        System.out.println(comment);
+    }
+
+    @Test
+    public void testStringChinese() {
+        String str = "请看看这条字符串的长度";
+        StringBuilder sb = new StringBuilder();
+        System.out.println(str.length());
+        for (int i=0;i<5;i++){
+            sb.append(str.charAt(i));
+        }
+        System.out.println(sb.toString());
+    }
+
+    @Test
+    public void testTagService() {
+        String str = "请你描述参加{专业}的面试需要准备的{服装}";
+        Prompt prompt = new Prompt();
+        prompt.setContent(str);
+        promptRepository.save(prompt);
+        List<Tag> tagList = tagService.getTagsFromPrompt(4);
+        for (Tag tag : tagList) {
+            System.out.println(tag);
+        }
     }
 
 }
